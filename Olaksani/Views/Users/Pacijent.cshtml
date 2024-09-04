@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+@model Olaksani.Models.Pacijent
+
+@using Olaksani.Models
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pacijent</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+
+        a {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>@Model.Ime @Model.Prezime @Model.Jmbg</h1>
+
+        <h2>Zakazivanje termina:</h2>
+        <form action="~/Users/StudentPrijava" method="post">
+            <input type="hidden" name="username" value="@Model.KorisnickoIme" />
+            
+            <label for="vremeOdrzavanja">
+                Termin:
+            </label>
+
+            <select id="vremeOdrzavanja" name="vremeOdrzavanja">
+                @{ 
+                    foreach (var option in Model.ZakaziTermin)
+                    {
+
+                        <option value="@option.VremeOdrzavanja">@option.VremeOdrzavanja, @option.Lekar.Ime, @option.OpisTerapije</option>
+                    }
+                }
+            </select>
+            <br />
+            <br />
+            <input type="submit" value="Zakazi" />
+        </form>
+
+        <h2>Pregled Termina:</h2>
+        <form action="~/Users/PregledIspitaStudent" method="post">
+            <input type="hidden" name="username1" value="@Model.KorisnickoIme" />
+            <input type="submit" value="Pregled" />
+        </form>
+
+        <h2>Pregled Terapija:</h2>
+        <form action="~/Users/PregledTerapijaStudent" method="post">
+            <input type="hidden" name="username1" value="@Model.KorisnickoIme" />
+            <input type="submit" value="Pregled" />
+        </form>
+
+        <a href="javascript:history.back()">Povratak na prethodnu stranicu</a>
+    </div>
+
+</body>
+</html>

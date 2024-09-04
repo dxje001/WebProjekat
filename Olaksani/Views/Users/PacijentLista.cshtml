@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+@using Olaksani.Models
+@model IEnumerable<Termin>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pacijent</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-style: italic;
+        }
+
+        table {
+            border: 1px solid black;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Termini</h1>
+
+    <table>
+        <tr>
+            <th>Ime lekara</th>
+            <th>Vreme odrzavanja</th>
+            <th>Opis Terapije</th>
+        </tr>
+        @foreach (var l in Model)
+        {
+
+            <tr>
+                <td>@l.Lekar.Ime</td>
+                <td>@l.VremeOdrzavanja</td>
+                <td>@l.OpisTerapije</td>
+                <td>@l.StatusTermina</td>
+            </tr>
+
+        }
+    </table>
+
+    <a href="javascript:history.back()">Povratak na prethodnu stranicu</a>
+</body>
+</html>

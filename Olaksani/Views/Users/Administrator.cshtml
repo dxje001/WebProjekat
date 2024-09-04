@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Administrator</h1>
+
+        <h2>Kreiranje pacijenta:</h2>
+        <form action="~/Users/DodajStudenta" method="post">
+            <label for="kreiranje-korisnickoIme">Korisnicko Ime:</label>
+            <input type="text" name="korisnickoIme" id="kreiranje-korisnickoIme" />
+
+            <label for="kreiranje-jmbg">Jmbg:</label>
+            <input type="text" name="jmbg" id="kreiranje-jmbg" />
+
+            <label for="kreiranje-sifra">Sifra:</label>
+            <input type="text" name="sifra" id="kreiranje-sifra" />
+
+            <label for="kreiranje-ime">Ime:</label>
+            <input type="text" name="ime" id="kreiranje-ime" />
+
+            <label for="kreiranje-prezime">Prezime:</label>
+            <input type="text" name="prezime" id="kreiranje-prezime" />
+
+            <label for="kreiranje-datum">Datum Rodjenja:</label>
+            <input type="date" name="datum" id="kreiranje-datum" />
+
+            <label for="kreiranje-elektronskaPosta">Elektronska Posta:</label>
+            <input type="text" name="elektronskaPosta" id="kreiranje-elektronskaPosta" />
+
+            <input type="submit" value="Dodaj" />
+        </form>
+
+        <h2>Azuriranje pacijenta:</h2>
+        <form action="~/Users/AzurirajStudenta" method="post">
+            <label for="azuriranje-korisnickoIme">Korisnicko Ime:</label>
+            <input type="text" name="korisnickoIme" id="azuriranje-korisnickoIme" />
+
+            <label for="azuriranje-sifra">Sifra:</label>
+            <input type="text" name="sifra" id="azuriranje-sifra" />
+
+            <label for="azuriranje-ime">Ime:</label>
+            <input type="text" name="ime" id="azuriranje-ime" />
+
+            <label for="azuriranje-prezime">Prezime:</label>
+            <input type="text" name="prezime" id="azuriranje-prezime" />
+
+            <label for="azuriranje-datum">Datum Rodjenja:</label>
+            <input type="date" name="datum" id="azuriranje-datum" />
+
+            <label for="azuriranje-elektronskaPosta">Elektronska Posta:</label>
+            <input type="text" name="elektronskaPosta" id="azuriranje-elektronskaPosta" />
+
+            <input type="submit" value="Azuriraj" />
+        </form>
+
+        <h2>Brisanje pacijenta:</h2>
+        <form action="~/Users/Obrisi" method="post">
+            <label for="brisanje-korisnickoIme">Korisnicko Ime:</label>
+            <input type="text" name="del" id="brisanje-korisnickoIme" />
+
+            <input type="submit" value="Obrisi" />
+        </form>
+
+        <h2>Pregled pacijenata:</h2>
+        <form action="~/Users/Pregled" method="post">
+            <input type="submit" value="Pregled" />
+        </form>
+        <a href="javascript:history.back()">Povratak na prethodnu stranicu</a>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+@using Olaksani.Models
+@model Olaksani.Models.Lekar
+@{ List<Pacijent> pc = new List<Pacijent>();
+}
+        <!DOCTYPE html>
+        <!DOCTYPE html>
+        @{
+            foreach (Terapija t in Model.PrepisaneTerapije)
+            {
+
+
+                if (t.Lekar.KorisnickoIme == Model.KorisnickoIme)
+                {
+                    if (!pc.Contains(t.Pacijent)) {
+                        pc.Add(t.Pacijent);
+
+                    }
+                }
+
+
+
+                //   List<ZdravstveniKarton> zdravstveniKartoni = (List<ZdravstveniKarton>)HttpContext.Current.Application["zdravstveniKartoni"];
+                // foreach (ZdravstveniKarton zk in zdravstveniKartoni)
+                // {
+                //     foreach (Termin termin in zk.Termini)
+                //     {
+                //         if (termin.Lekar.KorisnickoIme == Model.KorisnickoIme)
+                //         {
+                //             pc.Add(zk.Pacijent);
+                //         }
+                //     }
+                // }
+            }
+        }
+        <html>
+        <head>
+            <title>@ViewBag.Title</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f5f5f5;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .container {
+                    max-width: 600px;
+                    margin: 100px auto;
+                    padding: 20px;
+                    background-color: #fff;
+                    border-radius: 5px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                }
+
+                h1 {
+                    font-style: italic;
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+
+                h2 {
+                    margin-top: 40px;
+                    font-weight: bold;
+                }
+
+                label {
+                    display: block;
+                    margin-bottom: 10px;
+                    font-weight: bold;
+                }
+
+                input[type="text"],
+                input[type="date"],
+                input[type="submit"] {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                    margin-bottom: 20px;
+                }
+
+                input[type="submit"] {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    font-size: 16px;
+                }
+
+                    input[type="submit"]:hover {
+                        background-color: #45a049;
+                    }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>Lekar: @Model.Ime</h1>
+                <br />
+                <h2>Dodavanje Termina:</h2>
+                <form action="~/Users/DodajIspit" method="post">
+                    <input type="hidden" name="username2" value="@Model.KorisnickoIme" />
+                    <label for="stanjeTermina">Stanje termina</label>
+                    <select id="stanjeTermina" name="stanjeTermina">
+                        <option value="Slobodan">Slobodan</option>
+                        <option value="Zauzet">Zauzet</option>
+                    </select>
+                    <label for="datum">Datum i vreme:</label>
+                    <input type="date" name="datum" id="datum" />      <input id="appt-time" type="time" name="appt-time" value="16:32:55" /><br />
+
+                    <label for="opisTerapije">Opis Terapije:</label>
+                    <input type="text" name="opisTerapije" id="opisTerapije" /><br />
+                    <input type="submit" value="Dodaj" />
+                </form>
+                <br />
+                <h2>Dodavanje Terapije:</h2>
+                <form action="~/Users/DodajTerapiju" method="post">
+                    <input type="hidden" name="username2" value="@Model.KorisnickoIme" />
+                    <label for="korime">Izaberi pacijenta za dodelu terapije</label>
+                    <select id="korime" name="korime">
+                        @{
+                            foreach (var option in Model.PrepisaneTerapije)
+                            {
+
+                                <option value="@option.Pacijent.KorisnickoIme">@option.Pacijent.Ime, @option.Pacijent.Prezime</option>
+                            }
+                        }
+                    </select>
+
+                    <label for="nazivTerapije">Naziv Terapije:</label>
+                    <input type="text" name="nazivTerapije" id="nazivTerapije" />
+                    <br />
+                    <label for="opisTerapije">Opis Terapije:</label>
+                    <input type="text" name="opisTerapije" id="opisTerapije" />
+                    <br />
+                    <input type="submit" value="Dodaj" />
+                </form>
+                <br />
+                <br />
+                <h2>Pregled Termina:</h2>
+                <form action="~/Users/PregledIspita" method="post">
+                    <input type="hidden" name="username" value="@Model.KorisnickoIme" />
+                    <input type="submit" value="Pregled" />
+                </form>
+                <br />
+                <br />
+                <h2>Pregled Terapija:</h2>
+                <form action="~/Users/PregledTerapija" method="post">
+                    <input type="hidden" name="username" value="@Model.KorisnickoIme" />
+                    <input type="submit" value="Pregled" />
+                </form>
+                <br />
+                <a href="javascript:history.back()">Povratak na prethodnu stranicu</a>
+
+            </div>
+        </body>
+    </html>

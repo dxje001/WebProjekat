@@ -5,7 +5,7 @@ The **Healthcare Information System** is a web application simulating a healthca
 
 ## Key Technologies
 - **Frontend:** HTML, CSS, JavaScript
-- **Backend:** C# (.NET)
+- **Backend:** .NET (C#)  
 - **Data Storage:** JSON, XML, CSV, TSV, or custom delimiter-separated files
 - **Version Control:** Git (GitLab repository required)
 - **Design:** Customizable CSS-based UI
